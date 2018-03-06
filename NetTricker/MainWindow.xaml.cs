@@ -19,12 +19,34 @@ namespace NetTricker
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region fields
+        private log4net.ILog log;
+
+        #endregion
+
+
         public MainWindow()
         {
             InitializeComponent();
 
-            test();
+            ApplicationInit();
+
+            //test();
         }
+
+        private void ApplicationInit()
+        {
+            #region log configuration
+            System.IO.FileInfo file = new System.IO.FileInfo("log.config");
+            log4net.Config.XmlConfigurator.Configure(file);
+            log = log4net.LogManager.GetLogger("net_tricker.Logging");
+            log.Info("log configuration finished.");
+            #endregion
+
+
+            log.Info("Application initial finished.");
+        }
+
 
 
         private void test()
