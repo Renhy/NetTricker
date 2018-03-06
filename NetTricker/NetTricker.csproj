@@ -60,7 +60,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="operator\WifiWrappar.cs" />
+    <Compile Include="Operator\LanConfigOperator.cs" />
+    <Compile Include="Operator\WifiOperator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
