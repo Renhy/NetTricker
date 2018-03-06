@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetTricker.Operator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,10 +52,10 @@ namespace NetTricker
 
         private void test()
         {
-            string name = WifiWrappar.GetCurrentConnection();
+            string name = WifiOperator.GetCurrentConnection();
 
-            WIFISSID ssid = WifiWrappar.GetWIFISSID("IToIP");
-            WifiWrappar.ConnectToSSID(ssid, "h3c-wlan");
+            WIFISSID ssid = WifiOperator.GetWIFISSID("IToIP");
+            WifiOperator.ConnectToSSID(ssid, "h3c-wlan");
 
 
         }

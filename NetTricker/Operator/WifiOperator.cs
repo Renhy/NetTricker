@@ -5,9 +5,9 @@ using System.Text;
 
 using NativeWifi;
 
-namespace NetTricker
+namespace NetTricker.Operator
 {
-    class WifiWrappar
+    class WifiOperator
     {
 
         public static List<WIFISSID> ListSSID()
