@@ -7,11 +7,44 @@ using System.Text;
 
 namespace NetTricker.Operator
 {
-    class LanConfigOperator
+    class LanProxy : IProxy
     {
+        private string proxyStr = null;
+        public string ProxyStr { get => proxyStr; set => proxyStr = value; }
+
+        public bool IsProxy
+        {
+            get
+            {
+                return true;
+            }
+        }
+        public string Type
+        {
+            get
+            {
+                return "lan";
+            }
+        }
+
+        public LanProxy(string proxy)
+        {
+            this.proxyStr = proxy;
+        }
 
 
-        public static bool SetProxy(string strProxy, string exceptions)
+        public bool Proxy()
+        {
+            return SetProxy(this.proxyStr, null);
+        }
+
+        public bool UnProxy()
+        {
+            return SetProxy(null, null);
+        }
+
+
+        private static bool SetProxy(string strProxy, string exceptions)
         {
             InternetPerConnOptionList list = new InternetPerConnOptionList();
 
@@ -73,9 +106,6 @@ namespace NetTricker.Operator
 
             return (returnvalue < 0);
         }
-
-
-
     }
 
     #region WinInet structures

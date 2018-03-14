@@ -1,7 +1,42 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NetTricker.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="wifi" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Renhy_mobile</Value>
+    </Setting>
+    <Setting Name="wifi_key" Type="System.String" Scope="User">
+      <Value Profile="(Default)">18157141199</Value>
+    </Setting>
+    <Setting Name="wifi_proxy" Type="System.String" Scope="User">
+      <Value Profile="(Default)">IToIP</Value>
+    </Setting>
+    <Setting Name="wifi_proxy_key" Type="System.String" Scope="User">
+      <Value Profile="(Default)">h3c-wlan</Value>
+    </Setting>
+    <Setting Name="gradle_home" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\r14676\.gradle\</Value>
+    </Setting>
+    <Setting Name="maven_home" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\r14676\.m2\</Value>
+    </Setting>
+    <Setting Name="lan_config" Type="System.String" Scope="User">
+      <Value Profile="(Default)">proxy02.h3c.com:8080</Value>
+    </Setting>
+    <Setting Name="wifi_enable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="gradle_enable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="maven_enable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="lan_enable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="hide_delay" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2000</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

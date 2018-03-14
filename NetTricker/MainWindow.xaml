@@ -5,8 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NetTricker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="100" Width="320" Closing="Window_Closing" ContentRendered="Window_ContentRendered" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}" MouseLeftButtonDown="Window_MouseLeftButtonDown" Icon="pack://siteoforigin:,,,/Resources/Tricker.ico" MouseEnter="Window_MouseEnter" MouseLeave="Window_MouseLeave" LocationChanged="Window_LocationChanged" Topmost="True" ResizeMode="NoResize" >
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" MaxHeight="26"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border BorderBrush="#FF616161" CornerRadius="2" BorderThickness="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <Border.Background>
+                <SolidColorBrush Color="#FFF0F0F0"/>
+            </Border.Background>
+        </Border>
+        <Button x:Name="proxyButton" Content="Proxy" Margin="20,10" Click="proxyButton_Click" Background="White" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Button x:Name="unProxyButton" Content="UnProxy" Margin="20,10" Click="unProxyButton_Click" Background="White" IsEnabled="False" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <Label x:Name="infoLabel" Content="Info" Margin="3,3,3,6" VerticalAlignment="Bottom" Height="24" HorizontalContentAlignment="Stretch" Grid.ColumnSpan="2" Grid.Row="1"/>
     </Grid>
 </Window>

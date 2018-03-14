@@ -7,10 +7,71 @@ using NativeWifi;
 
 namespace NetTricker.Operator
 {
-    class WifiOperator
+    class WifiOperator : IProxy
     {
+        private string wifi;
+        private string wifi_key;
+        private string proxyWifi;
+        private string proxyWifi_key;
+        public string Type
+        {
+            get
+            {
+                return "wifi";
+            }
+        }
 
-        public static List<WIFISSID> ListSSID()
+        public bool IsProxy
+        {
+            get
+            {
+                return GetCurrentConnection() == proxyWifi;
+            }
+        }
+
+        public string currentSSID
+        {
+            get
+            {
+                return GetCurrentConnection();
+            }
+        }
+
+        public WifiOperator(string wifi, string wifi_key, string proxy, string proxy_key)
+        {
+            this.wifi = wifi;
+            this.wifi_key = wifi_key;
+            this.proxyWifi = proxy;
+            this.proxyWifi_key = proxy_key;
+        }
+
+
+        public bool Proxy()
+        {
+            if (!IsProxy)
+            {
+                WIFISSID ssid = GetWIFISSID(proxyWifi);
+                ConnectToSSID(ssid, proxyWifi_key);
+                return true;
+            }
+            return false;
+        }
+
+        public bool UnProxy()
+        {
+            if (IsProxy)
+            {
+                WIFISSID ssid = GetWIFISSID(wifi);
+                ConnectToSSID(ssid, wifi_key);
+                return true;
+            }
+
+            return false;
+        }
+
+
+
+        private static List<WIFISSID> ListSSID()
         {
             List<WIFISSID> ssids = new List<WIFISSID>();
 
@@ -35,7 +96,7 @@ namespace NetTricker.Operator
             return ssids;
         }
 
-        public static string GetCurrentConnection()
+        private static string GetCurrentConnection()
         {
             WlanClient client = new WlanClient();
             foreach (WlanClient.WlanInterface wlanIface in client.Interfaces)
@@ -50,7 +111,7 @@ namespace NetTricker.Operator
             return string.Empty;
         }
 
-        public static WIFISSID GetWIFISSID(string name)
+        private static WIFISSID GetWIFISSID(string name)
         {
             List<WIFISSID> ssids = ListSSID();
             foreach (WIFISSID ssid in ssids)
@@ -63,7 +124,7 @@ namespace NetTricker.Operator
             return null;
         }
 
-        public static void ConnectToSSID(WIFISSID ssid, string key)
+        private static void ConnectToSSID(WIFISSID ssid, string key)
         {
             try
             {
@@ -154,10 +215,7 @@ namespace NetTricker.Operator
             }
         }
 
-
-
-
-        public static string StringToHex(string str)
+        private static string StringToHex(string str)
         {
             StringBuilder sb = new StringBuilder();
             byte[] byStr = System.Text.Encoding.Default.GetBytes(str); //默认是System.Text.Encoding.Default.GetBytes(str)
