@@ -129,17 +129,26 @@ namespace NetTricker
                 Properties.Settings.Default.wifi_key,
                 Properties.Settings.Default.wifi_proxy,
                 Properties.Settings.Default.wifi_proxy_key);
-            IProxy gradle = new GradleProxy(
-                Properties.Settings.Default.gradle_home);
-            IProxy maven = new MavenProxy(
-                Properties.Settings.Default.maven_home);
-            IProxy lan = new LanProxy(
-                Properties.Settings.Default.lan_config);
-
             proxies.Add(wifiProxy);
-            proxies.Add(gradle);
-            proxies.Add(maven);
-            proxies.Add(lan);
+
+            if (Properties.Settings.Default.gradle_enable)
+            {
+                IProxy gradle = new GradleProxy(
+                    Properties.Settings.Default.gradle_home);
+                proxies.Add(gradle);
+            }
+            if (Properties.Settings.Default.maven_enable)
+            {
+                IProxy maven = new MavenProxy(
+                    Properties.Settings.Default.maven_home);
+                proxies.Add(maven);
+            }
+            if (Properties.Settings.Default.lan_enable)
+            {
+                IProxy lan = new LanProxy(
+                    Properties.Settings.Default.lan_config);
+                proxies.Add(lan);
+            }
         }
 
         #region ui event
@@ -208,9 +217,16 @@ namespace NetTricker
             {
                 foreach (IProxy proxy in proxies)
                 {
-                    log.InfoFormat("type = {0}, proxy.IsProxy = {1}", proxy.Type, proxy.IsProxy);
-                    proxy.Proxy();
-                    log.InfoFormat("over, proxy.IsProxy = {0}", proxy.IsProxy);
+                    try
+                    {
+                        log.InfoFormat("type = {0}, proxy.IsProxy = {1}", proxy.Type, proxy.IsProxy);
+                        proxy.Proxy();
+                        log.InfoFormat("over, proxy.IsProxy = {0}", proxy.IsProxy);
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Warn(ex);
+                    }
                 }
 
                 Thread.Sleep(5000);
@@ -232,9 +248,16 @@ namespace NetTricker
             {
                 foreach (IProxy proxy in proxies)
                 {
-                    log.InfoFormat("type = {0}, proxy.IsProxy = {1}", proxy.Type, proxy.IsProxy);
-                    proxy.UnProxy();
-                    log.InfoFormat("over, proxy.IsProxy = {0}", proxy.IsProxy);
+                    try
+                    {
+                        log.InfoFormat("type = {0}, proxy.IsProxy = {1}", proxy.Type, proxy.IsProxy);
+                        proxy.UnProxy();
+                        log.InfoFormat("over, proxy.IsProxy = {0}", proxy.IsProxy);
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Warn(ex);
+                    }
                 }
 
                 Thread.Sleep(5000);
